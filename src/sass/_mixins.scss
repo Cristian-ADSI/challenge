@@ -1,5 +1,25 @@
 @use "./fonts.scss";
+@import "./variables";
 
-@mixin font-poppins {
+@mixin font-Poppins {
     font-family: "Poppins", sans-serif;
+}
+
+@mixin font-Montserrat {
+    font-family: "Montserrat", sans-serif;
+}
+
+@mixin font-Raleway{
+    font-family: "Raleway", sans-serif;
+
+}
+
+@mixin shadow {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 15px 0px;
+}
+
+@mixin txt-20 {
+    color: $txt-dark-70;
+    font-size: 20px;
+    text-align: left;
 }
