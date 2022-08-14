@@ -1,0 +1,7 @@
+@use "../sass/mixins" as *;
+@import "../sass/_variables";
+.layout {
+    width: 100%;
+    overflow: hidden;
+    @include layout-padding;
+}

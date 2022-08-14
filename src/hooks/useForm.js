@@ -13,7 +13,6 @@ const useForm = (initialState = {}) => {
   const { email } = inputvalues;
 
   useEffect(() => {
-    email && console.log('El email ha cambiado');
   }, [email]);
 
   return [inputvalues, handleInputChange];

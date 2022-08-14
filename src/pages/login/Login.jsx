@@ -1,9 +1,15 @@
-import { selectUser } from 'features/UserSLice';
-import useForm from 'hooks/useForm';
-import { useSelector } from 'react-redux/es/exports';
+import { auth, sigIn, persistence } from 'services/firebase';
 import { Navigate } from 'react-router-dom';
+import { login, logout, selectUser } from 'helppers/UserSLice';
+import { validEmail, emptyFields } from 'helppers/validations';
+import { useDispatch, useSelector } from 'react-redux/es/exports';
+
+import useForm from 'hooks/useForm';
 
 import './Login.scss';
+import { useEffect } from 'react';
+import { browserLocalPersistence } from 'firebase/auth';
+import { userAuth } from 'helppers/UserAuth';
 
 const intValues = {
   email: '',
@@ -12,19 +18,39 @@ const intValues = {
 
 const Login = () => {
   const user = useSelector(selectUser);
-
   const [inputvalues, handleInputChange] = useForm(intValues);
   const { email, password } = inputvalues;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    userAuth(dispatch);
+  }, []);
 
   const handleSubmit = () => {
-    alert('login');
+    if (!validEmail(email)) return alert('Email invalido');
+    if (!emptyFields(email, password)) return alert('Campos vacios');
+
+    persistence(auth, browserLocalPersistence)
+      .then(() => {
+        sigIn(auth, email.toString(), password.toString())
+          .then((resp) => {
+            alert('Log in Succesfuly');
+          })
+          .catch((err) => {
+            alert(err);
+          });
+      })
+      .catch((err) => {
+        alert(err);
+      });
   };
 
+  //
   return (
     <div className="login">
-      {user && <Navigate to={'/app'} replace={true} />}
+      {user && <Navigate to={'/app'} replace />}
       <div className="login__content">
-        {/* Form  */}
+        {/* Form  Side */}
         <div className="login__content-form">
           <div className="title">
             <h2>Welcome Back!</h2>
@@ -57,7 +83,7 @@ const Login = () => {
             </button>
           </form>
         </div>
-        {/* Banner  */}
+        {/* Banner  Side*/}
         <div className="login__content-banner">
           <p>Stay connected anywhere!</p>
         </div>

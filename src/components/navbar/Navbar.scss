@@ -1,0 +1,58 @@
+@use "../../sass/mixins" as *;
+@import "../../sass/_variables";
+.navbar {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    &__brand {
+        width: 40px;
+    }
+    &__content {
+        height: 100%;
+        padding: 15px 0;
+        &-menu {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            height: 100%;
+            padding: 0 15px;
+            background: $white;
+            border-radius: 10px;
+            @include shadow();
+            .item {
+                list-style: none;
+                a {
+                    color: $txt-dark;
+                    font-weight: 700;
+                    text-decoration: none;
+                    text-transform: capitalize;
+                    transition: all ease-in-out 0.2s;
+                    @include font-Montserrat();
+                    &:hover {
+                        color: $blue;
+                    }
+                }
+                &__logout {
+                    color: $txt-dark;
+                    cursor: pointer;
+                    font-weight: 700;
+                    font-size: 16px;
+                    text-decoration: none;
+                    text-transform: capitalize;
+                    transition: all ease-in-out 0.2s;
+                    border: none;
+                    background-color: none;
+                    margin-left: 20px;
+                    @include font-Montserrat();
+                    &:hover {
+                        color: $blue;
+                    }
+                }
+            }
+        }
+    }
+}
