@@ -16,6 +16,7 @@ import {
   getAuth,
   signInWithEmailAndPassword as sigIn,
   signOut,
+  browserLocalPersistence,
   setPersistence as persistence,
 } from 'firebase/auth';
 
@@ -34,6 +35,7 @@ const auth = getAuth();
 
 export {
   auth,
+  browserLocalPersistence,
   collection,
   dataBase,
   doc,

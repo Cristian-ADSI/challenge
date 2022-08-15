@@ -1,15 +1,12 @@
-import { auth, sigIn, persistence } from 'services/firebase';
+import { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
-import { selectUser } from 'helppers/UserSLice';
-import { validEmail, emptyFields } from 'helppers/validations';
+import { selectUser } from 'helpers/UserSLice';
+import { validEmail, emptyFields } from 'helpers/validation';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 
 import useForm from 'hooks/useForm';
-
+import { userAuth, userLogIn } from 'helpers/authentication';
 import './Login.scss';
-import { useEffect } from 'react';
-import { browserLocalPersistence } from 'firebase/auth';
-import { userAuth } from 'helppers/UserAuth';
 
 const intValues = {
   email: '',
@@ -29,20 +26,7 @@ const Login = () => {
   const handleSubmit = () => {
     if (!validEmail(email)) return alert('Email invalido');
     if (!emptyFields(email, password)) return alert('Campos vacios');
-
-    persistence(auth, browserLocalPersistence)
-      .then(() => {
-        sigIn(auth, email.toString(), password.toString())
-          .then((resp) => {
-            alert('Log in Succesfuly');
-          })
-          .catch((err) => {
-            alert(err);
-          });
-      })
-      .catch((err) => {
-        alert(err);
-      });
+    userLogIn(email, password);
   };
 
   //

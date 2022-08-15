@@ -1,22 +1,23 @@
 import { Navbar } from 'components';
-import { userAuth } from 'helppers/UserAuth';
-import { selectUser } from 'helppers/UserSLice';
+import { userAuth } from 'helpers/authentication';
+import { selectUser } from 'helpers/UserSLice';
 import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 import './MainLayout.scss';
 
 const MainLayout = () => {
+  const [logged, setLogged] = useState(true);
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
   useEffect(() => {
-    userAuth(dispatch);
+    userAuth(dispatch,setLogged);
   }, []);
 
   return (
     <main className="layout">
-      {user === null && <Navigate to={'/'} replace />}
+      { !logged && <Navigate to={'/'} replace />}
       <header>
         <Navbar />
       </header>

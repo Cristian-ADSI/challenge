@@ -3,10 +3,10 @@ import { navLinks } from 'constants/links';
 import { brand } from 'constants/images';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from 'helppers/UserSLice';
+import { selectUser } from 'helpers/UserSLice';
 import { auth, signOut } from 'services/firebase';
 import './Navbar.scss';
-import { userLogOut } from 'helppers/UserAuth';
+import { userLogOut } from 'helpers/authentication';
 
 const Navbar = () => {
   const user = useSelector(selectUser);

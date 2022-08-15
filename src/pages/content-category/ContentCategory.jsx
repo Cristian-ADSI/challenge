@@ -1,17 +1,26 @@
 import Cookies from 'universal-cookie';
-import { collection, getDocs } from 'firebase/firestore';
-import { dataBase } from 'services/firebase';
 import { Link } from 'react-router-dom';
 import { React, useEffect, useState } from 'react';
 
 import './ContentCategory.scss';
-
-const cookies = new Cookies();
+import { getTopics, setTopic } from 'services/Services';
 
 const ContentCategory = () => {
-  const [category, setCategory] = useState(cookies.get('category'));
+  const cookies = new Cookies();
+  const category = cookies.get('category');
+  const { catgCover, color, imgUrl, label, largeDesc, route } = category;
+
   const [topics, setTopics] = useState([]);
-  const { catgCover, color, imgUrl, label, largeDesc, route, title } = category;
+  useEffect(() => {
+    getTopics(setTopics, route);
+    console.log(topics);
+  }, []);
+
+  const [list, setList] = useState([]);
+  useEffect(() => {
+    const sortedList = topics.sort((a, b) => a.index - b.index);
+    setList(sortedList);
+  }, [topics]);
 
   const bgImage = {
     background: `url("${catgCover}")`,
@@ -19,30 +28,6 @@ const ContentCategory = () => {
   const colorTxt = {
     color: `${color}`,
   };
-
-  const getTopics = async () => {
-    const topicsCollection = collection(dataBase, `${route}`);
-    const data = await getDocs(topicsCollection);
-    setTopics(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  };
-
-  const setTopic = (topic) => {
-    cookies.set('topic', topic, { path: '/app' });
-  };
-
-  useEffect(() => {
-    getTopics();
-    console.log(topics);
-  }, []);
-
-  const [list, setList] = useState([]);
-  useEffect(() => {
-    setList(
-      topics.sort((a, b) => {
-        return a.index - b.index;
-      })
-    );
-  }, [topics]);
 
   return (
     <div className="content-category">

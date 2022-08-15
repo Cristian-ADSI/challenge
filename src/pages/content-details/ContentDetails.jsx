@@ -1,48 +1,23 @@
 import { React, useEffect, useState } from 'react';
-import {
-  dataBase,
-  collection,
-  query,
-  where,
-  onSnapshot,
-} from 'services/firebase';
+import { Link } from 'react-router-dom';
 
 import ReactPlayer from 'react-player';
 import Cookies from 'universal-cookie';
-import './ContentDetails.scss';
-import { Link } from 'react-router-dom';
 
-const cookies = new Cookies();
+import { getNextLesson, getPrevLesson } from 'services/Services';
+import './ContentDetails.scss';
+
 const ContentDetails = () => {
+  const cookies = new Cookies();
   const [lesson, setLesson] = useState(cookies.get('topic'));
   const { media, sinopsis, title, context, index } = lesson;
 
-
   const [nextLesson, setNextLesson] = useState({});
-  const getNextLesson = async () => {
-    const reference = collection(dataBase, context);
-    const document = query(reference, where('index', '==', index + 1));
-
-    onSnapshot(document, (snapshot) => {
-      const data = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      setNextLesson(data[0]);
-    });
-  };
-
-  const [prevLesson, setPrevLesson] = useState([]);
-  const getPrevLesson = async () => {
-    const reference = collection(dataBase, context);
-    const document = query(reference, where('index', '==', index - 1));
-
-    onSnapshot(document, (snapshot) => {
-      const data = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      setPrevLesson(data[0]);
-    });
-  };
+  const [prevLesson, setPrevLesson] = useState({});
 
   useEffect(() => {
-    getPrevLesson();
-    getNextLesson();
+    getPrevLesson(context, index, setPrevLesson);
+    getNextLesson(context, index, setNextLesson);
   }, [lesson]);
 
   const goNextLesson = (topic) => {
@@ -60,6 +35,7 @@ const ContentDetails = () => {
         <div className="media">
           <ReactPlayer url={media} width="100%" height="400px" controls />
         </div>
+
         <div className="info">
           <div className="info__content">
             <h2 className="title">{title}</h2>
