@@ -2,7 +2,7 @@
 @import "../../sass/_variables";
 
 .category-card {
-    width: 22%;
+    width: 85%;
     height: 100%;
     margin-bottom: 30px;
     
@@ -13,6 +13,17 @@
     @include shadow();
     &:hover {
         transform: translateY(-20px);
+    }
+
+    @include tablet{ 
+        margin: 0 auto 30px auto;
+        width: 44%;
+        &:last-child{
+            margin: 0 3% 30px 3%; 
+        }
+    }
+    @include desktop{
+        width: 22%;
     }
 
     &__content {
@@ -35,6 +46,7 @@
             margin-bottom: 20px;
             font-size: 14px;
             color: $txt-dark-70;
+            height: 60px; 
         }
         a {
             display: block;
