@@ -1,25 +1,11 @@
-import { selectUser } from 'helppers/UserSLice';
-
-import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { useEffect, useState } from 'react';
-import { userAuth } from 'helppers/UserAuth';
-import { Navigate } from 'react-router-dom';
-
-import { dataBase } from 'services/firebase';
-import { collection, getDocs } from 'firebase/firestore';
-import CategoryCard from 'components/category-card/CategoryCard';
+import { React, useEffect, useState } from 'react';
+import { dataBase, getDocs, collection } from 'services/firebase';
+import { CategoryCard } from 'components';
 
 import './Home.scss';
 
 const Home = () => {
-  const [loged, setLoged] = useState('');
   const [categories, setCategories] = useState([]);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    userAuth(dispatch, setLoged);
-  }, []);
-
   const getCagetgories = async () => {
     const categoryCollection = collection(dataBase, 'categories');
     const data = await getDocs(categoryCollection);
@@ -39,11 +25,8 @@ const Home = () => {
     );
   }, [categories]);
 
-
   return (
     <div className="home">
-      {loged === 'none' && <Navigate to={'/'} replace />}
-      {/* <h1>{user && user.name}</h1> */}
       <h1 className="home__main-title">
         Course <span>Categories</span>
       </h1>
@@ -51,7 +34,7 @@ const Home = () => {
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse
         voluptatibus ipsa minima quia rerum hic recusandae aperiam odio, est
         consectetur neque, impedit dicta! Sapiente quis rem quibusdam facere
-        itaque reprehenderit.{' '}
+        itaque reprehenderit.
       </p>
       <div className="home__content">
         {cards.map((catg) => (

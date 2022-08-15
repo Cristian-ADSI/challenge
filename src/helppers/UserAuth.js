@@ -1,7 +1,7 @@
-import { auth } from 'services/firebase';
+import { auth, signOut } from 'services/firebase';
 import { login, logout } from './UserSLice';
 
-export const userAuth = (dispatch, setLoged) => {
+export const userAuth = (dispatch) => {
   auth.onAuthStateChanged((authUSer) => {
     if (authUSer) {
       dispatch(
@@ -11,8 +11,19 @@ export const userAuth = (dispatch, setLoged) => {
         })
       );
     } else {
-      setLoged('none');
       dispatch(logout({}));
     }
   });
+};
+
+export const userLogOut = (dispatch) => {
+  signOut(auth)
+    .then((resp) => {
+      alert('Log out successfully!');
+      dispatch(logout({}));
+    })
+    .catch((err) => {
+      alert('Something went wrong, sorry');
+      console.log(err);
+    });
 };

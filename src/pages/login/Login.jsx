@@ -1,6 +1,6 @@
 import { auth, sigIn, persistence } from 'services/firebase';
 import { Navigate } from 'react-router-dom';
-import { login, logout, selectUser } from 'helppers/UserSLice';
+import { selectUser } from 'helppers/UserSLice';
 import { validEmail, emptyFields } from 'helppers/validations';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 

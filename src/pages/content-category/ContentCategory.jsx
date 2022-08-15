@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
-import { dataBase } from 'services/firebase';
-import { collection, getDocs } from 'firebase/firestore';
 import Cookies from 'universal-cookie';
-import './ContentCategory.scss';
+import { collection, getDocs } from 'firebase/firestore';
+import { dataBase } from 'services/firebase';
 import { Link } from 'react-router-dom';
+import { React, useEffect, useState } from 'react';
+
+import './ContentCategory.scss';
 
 const cookies = new Cookies();
 
@@ -23,6 +24,10 @@ const ContentCategory = () => {
     const topicsCollection = collection(dataBase, `${route}`);
     const data = await getDocs(topicsCollection);
     setTopics(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+
+  const setTopic = (topic) => {
+    cookies.set('topic', topic, { path: '/app' });
   };
 
   useEffect(() => {
@@ -50,17 +55,22 @@ const ContentCategory = () => {
           <p className="large-desc">{largeDesc}</p>
         </div>
       </section>
+
       <section className="content-category__topics">
         <div className="header">
           <img className="cover" src={imgUrl} alt="Category Cover" />
           <h2>
-            Que <span>aprenderemos?</span>{' '}
+            Que <span>aprenderemos?</span>
           </h2>
         </div>
         <ul className="menu">
           {list.map((item) => (
-            <li className="item" key={item.index}>
-              <Link to={'/app'}>
+            <li
+              className="item"
+              key={item.index}
+              onClick={() => setTopic(item)}
+            >
+              <Link to={'/app/lesson'}>
                 {parseInt(item.index) + 1}. {item.title}
               </Link>
             </li>

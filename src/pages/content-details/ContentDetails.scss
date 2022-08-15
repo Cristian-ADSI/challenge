@@ -1,0 +1,84 @@
+@use "../../sass/mixins" as *;
+@import "../../sass/_variables";
+.content-details {
+    width: 100vw;
+    @include layout-padding();
+    &__lesson {
+        padding-top: 50px;
+        border-top: solid 2px #0000002b;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        .media {
+            width: 50%;
+            height: 60vh;
+            iframe {
+                border-radius: 10px;
+            }
+        }
+        .info {
+            padding-left: 30px;
+            width: 50%;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            &__content {
+                display: flex;
+                flex-direction: column;
+                .title {
+                    color: $blue;
+                    font-size: 35px;
+                    margin-bottom: 30px;
+                    @include font-Montserrat();
+                }
+                .sinopsis {
+                    color: $txt-dark-70;
+                    font-size: 18px;
+                    margin-bottom: 30px;
+                    text-align: justify;
+                }
+            }
+
+            &__navegation {
+                display: flex;
+                justify-content: space-between;
+                button {
+                    display: flex;
+                    align-items: center;
+                    height: 40px;
+                    padding: 5px 10px;
+
+                    color: $white;
+                    font-size: 18px;
+                    font-weight: 600;
+                    line-height: 25px;
+                    text-decoration: none;
+
+                    cursor: pointer;
+                    border: none;
+                    border-radius: 5px;
+                    background-color: $blue;
+
+                    &:hover {
+                        background-color: $blue-dark;
+                    }
+                    &.prev-disabled {
+                        pointer-events: none;
+                        background-color: $txt-dark;
+                        opacity: 0.3;
+                    }
+                    &.next-disabled {
+                        pointer-events: none;
+                        background-color: $txt-dark;
+                        opacity: 0.3;
+                    }
+                    a {
+                        color: $white;
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+}
