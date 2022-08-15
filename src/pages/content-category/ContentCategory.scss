@@ -1,0 +1,110 @@
+@use "../../sass/mixins" as *;
+@import "../../sass/_variables";
+.content-category {
+    width: 100%;
+    &__header {
+        position: relative;
+        height: 79vh;
+        width: 100%;
+        background-color: $black;
+        overflow: hidden;
+        @include layout-padding;
+
+        .overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 100%;
+            width: 101%;
+
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.6;
+            filter: blur(2px);
+            transform: translateX(-50%) translateY(-50%);
+            z-index: 10;
+        }
+        .info {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+
+            height: 100%;
+            width: 100%;
+
+            .title {
+                position: relative;
+                background: #ffffff;
+                padding: 15px;
+                border-radius: 10px;
+
+                font-size: 45px;
+                margin-bottom: 30px;
+                @include font-Montserrat();
+                z-index: 10;
+            }
+            .large-desc {
+                width: 70%;
+                position: relative;
+                color: $white;
+                z-index: 10;
+                text-align: center;
+                font-size: 18px;
+                font-weight: 600;
+            }
+        }
+    }
+    &__topics {
+        margin: 30px 0;
+        @include layout-padding;
+        .header{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            img{
+
+                width: 50px;
+                border-radius: 5px;
+            }
+            h2{
+                color: $txt-dark;
+                font-size: 35px;
+                span{
+                    color: $blue;
+
+                }
+            }
+        }
+        .menu {
+            width: 40%;
+            .item {
+                cursor: pointer;
+                margin-bottom: 20px;
+                background-color: $white;
+                border-radius: 8px;
+                font-weight: 600;
+                list-style: none;
+                transition: all ease-in-out .2s;
+                @include shadow();
+                &:hover{
+                    transform: translateY(-5px) scale(1.03);
+                    a{
+                        color: orange;
+                    }
+                }
+                a {
+                    display: block;
+                    height: 50px;
+                    width: 100%;
+                    padding: 10px;
+                    line-height: 30px;
+                    color: $txt-dark-70;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

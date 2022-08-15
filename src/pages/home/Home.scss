@@ -3,6 +3,7 @@
 
 .home{
     width: 100%;
+    @include layout-padding;
     &__main-title{
         color: $txt-dark;
         font-weight: 700;
@@ -24,8 +25,8 @@
     &__content{
         display: flex;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: space-between;
         flex-wrap: wrap;
-        gap: 3%;
+        
     }
 }

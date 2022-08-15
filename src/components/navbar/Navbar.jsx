@@ -13,14 +13,13 @@ const Navbar = () => {
       <div className="navbar__content">
         <ul className="navbar__content-menu">
           {navLinks.map((item) => (
-            <li key={item.id} className="item">
+            <li key={item.index} className="item">
               <Link to={item.route}>{item.name}</Link>
             </li>
           ))}
 
           <li className="item">
             <button className="item__logout" href="/">
-         
               Log Out
             </button>
           </li>

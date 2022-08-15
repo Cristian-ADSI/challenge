@@ -25,11 +25,21 @@ const Home = () => {
     const data = await getDocs(categoryCollection);
     setCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
+
   useEffect(() => {
     getCagetgories();
   }, []);
 
-  const user = useSelector(selectUser);
+  const [cards, setCards] = useState([]);
+  useEffect(() => {
+    setCards(
+      categories.sort((a, b) => {
+        return a.index - b.index;
+      })
+    );
+  }, [categories]);
+
+
   return (
     <div className="home">
       {loged === 'none' && <Navigate to={'/'} replace />}
@@ -44,8 +54,8 @@ const Home = () => {
         itaque reprehenderit.{' '}
       </p>
       <div className="home__content">
-        {categories.map((catg) => (
-          <CategoryCard key={catg.id} props={catg} />
+        {cards.map((catg) => (
+          <CategoryCard key={catg.index} props={catg} />
         ))}
       </div>
     </div>
