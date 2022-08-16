@@ -6,8 +6,10 @@ Version de react 18.2.0
 
 ## Requisitos para correr el proyecto
 
--Tener instalado node js (se recomienda versiones apartir de la 14.15.1(
- Link de descarga: https://nodejs.org/es/
+-Tener instalado node js (se recomienda versiones apartir de la 14.15.1 | Link de descarga: https://nodejs.org/es/ )
+
+-Tener instalado un editor de codigo (se recomienda visual studio code | Link de descarga: https://code.visualstudio.com/download )
+ 
 
 
 
