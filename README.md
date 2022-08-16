@@ -21,7 +21,12 @@ Version de react 18.2.0
 -Ejecutar: npm install  | este comando  permitira descargar las dependencias y paquetes del proyecto (esto puede tomar un tiempo segun tu velocidad de conexion)
 
 -Despues de descargar las dependencias el proyecto estara listo para ejecutarse en el navegador de manera local
- 
+
+## Credencials para login
+
+usuario: usuario@bemaster.test
+
+contrasena: Agosto_2022
 
 ## Scripts Disponibles
 
