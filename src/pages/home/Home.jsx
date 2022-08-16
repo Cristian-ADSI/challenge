@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from 'react';
 
 import { getDocuments } from 'services/Services';
-import { CategoryCard } from 'components';
+import { CategoryCard, Loading } from 'components';
 import './Home.scss';
 
 const Home = () => {
@@ -18,6 +18,7 @@ const Home = () => {
 
   return (
     <div className="home">
+      {!cards[0] && <Loading />}
       <h1 className="home__main-title">
         Course <span>Categories</span>
       </h1>

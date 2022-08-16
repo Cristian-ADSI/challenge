@@ -6,6 +6,7 @@ import Cookies from 'universal-cookie';
 
 import { getNextLesson, getPrevLesson } from 'services/Services';
 import './ContentDetails.scss';
+import { Loading } from 'components';
 
 const ContentDetails = () => {
   const cookies = new Cookies();
@@ -31,6 +32,7 @@ const ContentDetails = () => {
 
   return (
     <section className="content-details">
+      {!lesson && <Loading /> } 
       <div className="content-details__lesson">
         <div className="media">
           <ReactPlayer url={media} width="100%" height="400px" controls />

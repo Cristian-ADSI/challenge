@@ -4,6 +4,7 @@ import { React, useEffect, useState } from 'react';
 
 import './ContentCategory.scss';
 import { getTopics, setTopic } from 'services/Services';
+import { Loading } from 'components';
 
 const ContentCategory = () => {
   const cookies = new Cookies();
@@ -31,6 +32,7 @@ const ContentCategory = () => {
 
   return (
     <div className="content-category">
+      {!list[0] && <Loading /> } 
       <section className="content-category__header">
         <div className="overlay" style={bgImage}></div>
         <div className="info">

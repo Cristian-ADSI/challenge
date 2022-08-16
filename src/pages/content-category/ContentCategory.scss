@@ -1,7 +1,9 @@
 @use "../../sass/mixins" as *;
 @import "../../sass/_variables";
 .content-category {
+    position: relative;
     width: 100%;
+    height: auto;
     &__header {
         position: relative;
         height: 79vh;

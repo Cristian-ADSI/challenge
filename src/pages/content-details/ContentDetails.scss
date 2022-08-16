@@ -1,7 +1,9 @@
 @use "../../sass/mixins" as *;
 @import "../../sass/_variables";
 .content-details {
+    position: relative;
     width: 100vw;
+    height: auto;
     @include layout-padding();
     &__lesson {
         display: flex;

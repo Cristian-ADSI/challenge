@@ -2,7 +2,9 @@
 @import "../../sass/_variables";
 
 .home {
+    position: relative;
     width: 100%;
+    height: auto;
     @include layout-padding;
     &__main-title {
         color: $txt-dark;
