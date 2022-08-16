@@ -22,7 +22,7 @@ Version de react 18.2.0
 
 -Despues de descargar las dependencias el proyecto estara listo para ejecutarse en el navegador de manera local
 
-## Credencials para login
+## Credenciales para login
 
 usuario: usuario@bemaster.test
 
