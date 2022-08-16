@@ -1,20 +1,31 @@
 import Cookies from 'universal-cookie';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { React, useEffect, useState } from 'react';
 
 import './ContentCategory.scss';
 import { getTopics, setTopic } from 'services/Services';
 import { Loading } from 'components';
 
+const initvalues = {
+  catgCover: '',
+  color: '',
+  imgUrl: '',
+  label: '',
+  large: '',
+  largeDesc: '',
+  route: '',
+};
 const ContentCategory = () => {
   const cookies = new Cookies();
-  const category = cookies.get('category');
+  const cookiesCatg = cookies.get('category');
+  const category = cookiesCatg ? cookiesCatg : initvalues;
   const { catgCover, color, imgUrl, label, largeDesc, route } = category;
+  const redirect = useNavigate();
 
   const [topics, setTopics] = useState([]);
   useEffect(() => {
+    !route && redirect('/app', { replace: true });
     getTopics(setTopics, route);
-    console.log(topics);
   }, []);
 
   const [list, setList] = useState([]);
@@ -32,7 +43,8 @@ const ContentCategory = () => {
 
   return (
     <div className="content-category">
-      {!list[0] && <Loading /> } 
+      {!category && <Navigate to={'/app'} />}
+      {!list[0] && <Loading />}
       <section className="content-category__header">
         <div className="overlay" style={bgImage}></div>
         <div className="info">
