@@ -37,6 +37,7 @@ const ContentCategory = () => {
   const bgImage = {
     background: `url("${catgCover}")`,
   };
+
   const colorTxt = {
     color: `${color}`,
   };
@@ -62,6 +63,7 @@ const ContentCategory = () => {
             Que <span>aprenderemos?</span>
           </h2>
         </div>
+
         <ul className="menu">
           {list.map((item) => (
             <li
@@ -75,6 +77,7 @@ const ContentCategory = () => {
             </li>
           ))}
         </ul>
+        
       </section>
     </div>
   );

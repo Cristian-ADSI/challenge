@@ -24,6 +24,9 @@
     }
     @include desktop{
         width: 22%;
+        &:last-child{
+            margin: 0 1.5%; 
+        }
     }
 
     &__content {
