@@ -1,8 +1,11 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+TEste  proyecto fue generado con [Create React App](https://github.com/facebook/create-react-app).
 
-React version 18.2.0
+Version de react 18.2.0
+
+## Requisitos para correr el proyecto
+
 
 
 ## Available Scripts
